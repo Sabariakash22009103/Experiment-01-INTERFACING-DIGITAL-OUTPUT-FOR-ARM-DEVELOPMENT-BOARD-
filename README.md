@@ -73,14 +73,8 @@ The main features of LPC2148 include the following.
 12. connect the stm nucleo board and click on run 
 ![image](https://user-images.githubusercontent.com/36288975/226189649-b5dff389-91df-4eca-b84a-1127c6562637.png)
 
-
-
-
-
-
 ## STM 32 CUBE PROGRAM :
 ```
-
 #include "main.h"
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
@@ -144,9 +138,7 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
 }
-
 void Error_Handler(void)
 {
   __disable_irq();
@@ -154,7 +146,6 @@ void Error_Handler(void)
   {
   }
 }
-
 #ifdef  USE_FULL_ASSERT
 void assert_failed(uint8_t *file, uint32_t line)
 {
@@ -164,6 +155,7 @@ void assert_failed(uint8_t *file, uint32_t line)
 ## Output  :
  
  ![pmc](https://user-images.githubusercontent.com/119390227/226540003-382329c1-116e-4f1a-8ec9-b556acd82263.jpg)
+
 
 ## Result :
 Interfacing a digital output with ARM microcontroller is executed and the results are verified.
