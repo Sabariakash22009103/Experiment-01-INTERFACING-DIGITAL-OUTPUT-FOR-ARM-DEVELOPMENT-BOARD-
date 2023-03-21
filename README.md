@@ -82,23 +82,20 @@ The main features of LPC2148 include the following.
 ```
 
 #include "main.h"
-
-
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 void led();
-
 int main(void)
 {
-  
+  HAL_Init();
+  SystemClock_Config();
 
-  
+  MX_GPIO_Init();
   while (1)
   {
 	  led();
-    
   }
- 
+  
 }
 void led()
 {
@@ -108,15 +105,11 @@ void led()
 	 HAL_Delay(2000);
 
 }
-
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-
- 
   HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
-  
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
@@ -126,7 +119,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
- 
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
@@ -138,17 +130,15 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
-
-
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  
+
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-  
+
   GPIO_InitStruct.Pin = GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -156,6 +146,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
+
 void Error_Handler(void)
 {
   __disable_irq();
@@ -165,18 +156,15 @@ void Error_Handler(void)
 }
 
 #ifdef  USE_FULL_ASSERT
-
 void assert_failed(uint8_t *file, uint32_t line)
 {
-  
 }
-#endif 
-
+#endif
 ```
-
 ## Output  :
  
- 
+ ![pmc](https://user-images.githubusercontent.com/119390227/226540003-382329c1-116e-4f1a-8ec9-b556acd82263.jpg)
+
 ## Result :
 Interfacing a digital output with ARM microcontroller is executed and the results are verified.
 
